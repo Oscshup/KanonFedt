@@ -7,7 +7,7 @@ void setup() {
   background = new Background(); 
   size(700, 700);
   for (int i = 0; i < player; i++) {
-    tank[i] = new Tank(100, 100, 40);
+    tank[i] = new Tank(100, 100,56);
   }
 }
 
