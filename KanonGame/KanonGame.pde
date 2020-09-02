@@ -1,15 +1,15 @@
 //variable
 // Hej
 
-void setup(){
+Background background;
 
-
+void setup() {
+  size(700, 700);
+  background = new Background();
 }
 
 
 
-void draw(){
-
-
-
+void draw() {
+  background.display();
 }
