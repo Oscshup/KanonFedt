@@ -1,7 +1,7 @@
 //variable
 
 void setup(){
-
+size(700,700);
 
 }
 
