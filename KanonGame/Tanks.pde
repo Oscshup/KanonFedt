@@ -1,23 +1,30 @@
 class Tank {
-  float x,y;
   float r;
-  
-  
-  Tank(float posX, float posY, float r_){
-  x = posX;
-  y = posY;
-  r = r_;
-  
+
+  PVector location;
+  int i = 0; 
+
+
+
+
+  Tank(float x, float y, float r_) {
+location = new PVector(x, y);
+    r = r_;
   }
 
   void display() {
     stroke(0);
-    fill(200,100,150);
+    fill(200, 100, 150);
     rectMode(CENTER);
-    rect(x, y, r, r, 100, 100, 0, 0);
-    
+    rect(location.x, location.y, r, r, 100, 100, 0, 0);
   }
-  
-  
-  
+
+
+  void move() {
+    if (keyPressed) { 
+      if (key == 'A' || key == 'a') {
+        location.x += 1;
+      }
+    }
+  }
 }
