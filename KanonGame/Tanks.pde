@@ -8,11 +8,8 @@ class Tank {
 
 
   Tank(float x, float y, float r_) {
-<<<<<<< Updated upstream
-location = new PVector(x, y);
-=======
     location = new PVector(x, y);
->>>>>>> Stashed changes
+    location = new PVector(x, y);
     r = r_;
   }
 
@@ -27,12 +24,9 @@ location = new PVector(x, y);
   void move() {
     if (keyPressed) { 
       if (key == 'A' || key == 'a') {
-<<<<<<< Updated upstream
-=======
         location.x -= 1;
       }
       if (key == 'D' || key == 'd') {
->>>>>>> Stashed changes
         location.x += 1;
       }
     }
