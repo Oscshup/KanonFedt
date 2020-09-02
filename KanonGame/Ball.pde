@@ -60,6 +60,11 @@ class Shot {
     shotActive = false;
   }
   
+  void soundEffect(){
+  
+  
+  }
+  
   void checkEdges(){
     if(location.x > width-diaX/2){
       location.x = width-diaX/2;

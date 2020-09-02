@@ -1,6 +1,10 @@
 //variable
+import processing.sound.*;
+SoundFile Boom; // mangler at skrive mere på sound
+
 Background background;
 Shot s;
+
 int player = 2;
 
 // Skal udskiftes med lokation af rørets ende.
@@ -13,11 +17,6 @@ boolean shotActive = false;
 
 Tank[] tank = new Tank[player];
 Hill hill;
-
-
-void setup() {
-  size(1200, 700);
-
 
 
 void setup() {
@@ -53,6 +52,7 @@ void draw() {
     s.update();
     s.display();
     s.checkEdges();
+    s.explode();
   }
 }
 
