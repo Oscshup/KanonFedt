@@ -15,6 +15,7 @@ class Tank {
 
   void display() {
     stroke(0);
+    strokeWeight(3);
     fill(200, 100, 150);
     rectMode(CENTER);
     rect(location.x, location.y, r, r, 100, 100, 0, 0);

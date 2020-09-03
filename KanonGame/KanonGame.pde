@@ -19,13 +19,13 @@ Hill hill;
 
 void setup() {
   background = new Background(); 
-  size(700, 700);
+  size(960, 540);
   background = new Background();
   xTemp = 100;
   yTemp = height-100;
 
   for (int i = 0; i < player; i++) {
-    tank[i] = new Tank(100,100, 40);
+    tank[i] = new Tank(100, 100, 40);
   }
 
   hill = new Hill(width/2, height, 350);
@@ -37,7 +37,7 @@ void setup() {
 void draw() {
   background.display();
   hill.display();
-  
+
   if (shotActive == true) {
     PVector gravityShot = new PVector(0, 0.2*massShot);
     println(gravityShot);
@@ -56,11 +56,10 @@ void draw() {
     t.display();
     t.move();
   }
-  
 }
 
 void mouseClicked() {
-   if (shotActive == false) {
+  if (shotActive == false) {
     s = new Shot(xTemp, yTemp, 30, orange, mouseX, mouseY, massShot);
     shotActive = true;
   }

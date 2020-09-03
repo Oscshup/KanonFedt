@@ -55,6 +55,7 @@ class Shot {
     strokeWeight(1);
     fill(c);
     ellipse(location.x, location.y, diaX, diaY);
+    println("ej");
   }
 
   void hit() {
