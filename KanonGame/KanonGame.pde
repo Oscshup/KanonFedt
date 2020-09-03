@@ -1,8 +1,3 @@
-//variable
-// Hej
-
-
-
 Background background;
 Shot s;
 
@@ -21,23 +16,25 @@ void setup() {
   yTemp = height-100;
 }
 
-
-
 void draw() {
   background.display();
-
-
+  
   if (shotActive == true) {
     PVector gravityShot = new PVector(0, 0.2*massShot);
-    println(gravityShot);
     s.applyForce(gravityShot);
     s.update();
-    s.display();
+    if (s.explosionActive == true) {
+      s.explode();
+    } else {
+      s.display();
+    }
     s.checkEdges();
   }
 }
 
 void mouseClicked() {
-  s = new Shot(xTemp, yTemp, 30, orange, mouseX, mouseY, massShot);
-  shotActive = true;
+  if (shotActive == false) {
+    s = new Shot(xTemp, yTemp, 30, orange, mouseX, mouseY, massShot);
+    shotActive = true;
+  }
 }
