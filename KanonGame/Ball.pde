@@ -61,8 +61,7 @@ class Shot {
   }
   
   void soundEffect(){
-  
-  
+
   }
   
   void checkEdges(){

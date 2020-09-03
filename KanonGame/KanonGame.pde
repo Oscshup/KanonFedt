@@ -1,6 +1,4 @@
 //variable
-import processing.sound.*;
-SoundFile Boom; // mangler at skrive mere på sound
 
 Background background;
 Shot s;
@@ -35,16 +33,9 @@ void setup() {
 
 
 void draw() {
-
-
-  for (Tank t : tank) {
-    t.display();
-  }
-
-  hill.display();
   background.display();
-
-
+  hill.display();
+  
   if (shotActive == true) {
     PVector gravityShot = new PVector(0, 0.2*massShot);
     println(gravityShot);
@@ -54,6 +45,12 @@ void draw() {
     s.checkEdges();
     s.explode();
   }
+
+
+  for (Tank t : tank) {
+    t.display();
+  }
+  
 }
 
 void mouseClicked() {
