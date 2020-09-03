@@ -1,5 +1,5 @@
 class Shot {
-  
+
   PVector location;
   PVector velocity;
   PVector acceleration;
@@ -10,8 +10,8 @@ class Shot {
   float angleStart;
   float velStart;
   float mass;
-  
-  Shot(float x_, float y_, float dia_, color c_, float targetX_, float targetY_, float mass_){
+
+  Shot(float x_, float y_, float dia_, color c_, float targetX_, float targetY_, float mass_) {
     location = new PVector(x_, y_);
     target = new PVector(targetX_, targetY_);
     angleStart = atan2(target.y-location.y, target.x-location.x);
@@ -22,56 +22,58 @@ class Shot {
     float VelY = velStart * sin(angleStart);
     velocity = new PVector(VelX, VelY);
     mass = mass_; 
-    acceleration = new PVector(0,0);
+    acceleration = new PVector(0, 0);
     diaX = dia_;
     diaY = dia_;
     c = c_;
   }
-  
-  void update(){
+
+  void update() {
     velocity.add(acceleration);
     location.add(velocity);
     acceleration.mult(0);
   }
-  
-  void applyForce(PVector force){
+
+  void applyForce(PVector force) {
     PVector f = PVector.div(force, mass);
     acceleration.add(f);
   }
-  
-  void display(){
+
+  void display() {
     stroke(0);
     strokeWeight(1);
     fill(c);
     ellipse(location.x, location.y, diaX, diaY);
   }
-  
-  void hit(){
+
+  void hit() {
     velocity.mult(0);
     diaY-=2;
-    if(diaY <= diaX*7/8){
+    if (diaY <= diaX*7/8) {
       explode();
     }
   }
-  
-  void explode(){
+
+  void explode() {
     println("Exploded");
     soundEffect();
     shotActive = false;
   }
-  
-  void checkEdges(){
-    if(location.x > width-diaX/2){
+
+  void soundEffect() {
+  }
+
+  void checkEdges() {
+    if (location.x > width-diaX/2) {
       location.x = width-diaX/2;
       velocity.x*=-1;
-    } else if (location.x < diaX/2){
+    } else if (location.x < diaX/2) {
       location.x = diaX/2;
       velocity.x*=-1;
     } 
-    if(location.y > height-diaY/2){
+    if (location.y > height-diaY/2) {
       location.y = height-diaY/2;
       hit();
-    } 
+    }
   }
-  
 }
