@@ -1,6 +1,9 @@
 class Hill {
   PVector location;
   float r;
+  float a = 0.0;
+  float inc = TWO_PI/25.0;
+
 
 
   Hill(float x, float y, float r_) {
@@ -10,10 +13,10 @@ class Hill {
 
 
   void display() {
-    noStroke();
-    fill(#996600);
-    arc(location.x, location.y, r*2, r, radians(180), radians(360));
-    arc(location.x+490, location.y, r, r, radians(180), radians(200));
-    arc(location.x-490, location.y, r, r, radians(340), radians(360));
+    stroke(4);
+    for (int i = 0; i < 100; i=i+4) {
+      stroke(i, 50, i, sin(a));
+      a = a + inc;
+    }
   }
 }
