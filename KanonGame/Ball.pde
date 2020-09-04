@@ -77,7 +77,7 @@ class Shot {
     redOpacity-=4;
     if(redOpacity <= 0){
       explosionActive = false;
-      shotActive = false;
+     // shotActive = false;
     }
   }
 

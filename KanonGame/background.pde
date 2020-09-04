@@ -3,7 +3,7 @@ class Background {
   PImage b;
 
   Background() {
-    b = loadImage("Background.JPG");
+    b = loadImage("Background.jpg");
   }
 
   void display() {
