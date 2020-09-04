@@ -6,9 +6,8 @@ class Tank {
   PVector velocity;
   int i = 0; 
   int dir = 1;
-
-
-
+  float angleStart = 0;
+  int rorLength = 75;
 
   Tank(float x, float y, float r_) {
     location = new PVector(x, y);
@@ -20,11 +19,11 @@ class Tank {
     ror = loadImage("ror.png");
     pushMatrix();
     translate(location.x+50, location.y+5);
-    float angleStart = constrain(atan2(mouseY-location.y-5, mouseX-location.x-50),-PI,0);
+    angleStart = constrain(atan2(mouseY-location.y-5, mouseX-location.x-50),-PI,0);
     rotate(angleStart);
 
   println(angleStart);
-    ror.resize(75, 5);
+    ror.resize(rorLength, 5);
     image(ror, 0, 0);
 
     popMatrix();
