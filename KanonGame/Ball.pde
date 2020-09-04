@@ -12,13 +12,13 @@ class Shot {
   float mass;
   int sequence = 0;
   boolean explosionActive = false;
-  
-  
+
+
   // For explosion animation
   int redOpacity;
   float diaExplosion;
   float diaExplChange;
-  
+
   Shot(float x_, float y_, float dia_, color c_, float targetX_, float targetY_, float mass_) {
     location = new PVector(x_, y_);
     target = new PVector(targetX_, targetY_);
@@ -36,11 +36,12 @@ class Shot {
     redOpacity = 255;
     diaExplosion = dia_;
     diaExplChange = 0.5;
-    
   }
 
   void update() {
-    velocity.add(acceleration);
+    if (explosionActive == false) {
+      velocity.add(acceleration);
+    }
     location.add(velocity);
     acceleration.mult(0);
   }
@@ -59,22 +60,19 @@ class Shot {
 
   void hit() {
     velocity.mult(0);
-    diaY-=2;
-    if (diaY <= diaX*7/8) {
-      explosionActive = true;
-      soundEffect();
-    }
+    explosionActive = true;
+    soundEffect();
   }
-  
+
   void explode() {
-    color orange = color(255,60,0,redOpacity);
+    color orange = color(255, 60, 0, redOpacity);
     fill(orange);
     noStroke();
     ellipse(location.x, location.y, diaExplosion, diaExplosion);
     diaExplosion+=diaExplChange/2;
     diaExplChange+=0.001;
     redOpacity-=4;
-    if(redOpacity <= 0){
+    if (redOpacity <= 0) {
       explosionActive = false;
       shotActive = false;
     }
