@@ -1,5 +1,5 @@
 class Background {
-  
+
   PImage b;
   
   Background(){
