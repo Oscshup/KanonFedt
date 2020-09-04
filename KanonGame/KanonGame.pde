@@ -27,7 +27,7 @@ void setup() {
     tankOffY = 50;
     xTemp = width*i+width/6-2*i*width/6;
     yTemp = hill.floorFunction(xTemp)-tankOffY;
-    tank[i] = new Tank(xTemp, yTemp, 56, offXTemp, offYTemp);
+    tank[i] = new Tank(xTemp, yTemp, 56, offXTemp, offYTemp, i+1);
   }
 }
 
