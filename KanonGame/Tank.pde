@@ -10,6 +10,11 @@ class Tank {
   int rorLength = 75;
   float offX;
   float offY;
+  //variable to the Healthbar
+  int maxHealth = 100;
+  float health = 100;
+  float healthDecrease = 10;
+  int healthBarWidth = 60;
 
   Tank(float x, float y, float r_, float offX_, float offY_) {
     location = new PVector(x, y);
@@ -41,12 +46,57 @@ class Tank {
     image(tank, location.x-offX, location.y-offY);
   }
 
-  void rotater(){
+  void rotater() {
     fill(0);
     ellipse(location.x, location.y, 20, 20);
     float angle = atan2(location.x, hill.diffFloorFunction(location.x));
     //println(angle);
   }
+
+  void health() {
+    noStroke();
+    fill(0, 255, 0);
+    rectMode(CORNER);
+    rect(location.x-(healthBarWidth/2), location.y - 30, healthBarWidth, 5);
+    if (health > 60) {
+      fill(46, 204, 113);
+    } else if (health > 30) {
+      fill(230, 126, 34);
+    } else {
+      fill(231, 76, 60);
+    }
+    rectMode(CORNER);
+    rect(location.x-(healthBarWidth/2), location.y - 30, healthBarWidth*(health/maxHealth), 5);
+  }
+
+
+  void decreaseHealth() {
+    if ((s.location.x+(s.d/2)>location.x) && 
+      (s.location.x-(s.d/2)<location.x) &&
+      (s.location.y+(s.d/2)>location.y) &&
+      (s.location.y-(s.d/2)<location.y)
+      ) {
+      decreaseHealth();
+    }
+
+
+    health -= healthDecrease;
+    if (health <= 0) {
+      gameOverScreen();
+    }
+  }
+
+  void gameOverScreen() {
+    background(0);
+    textAlign(CENTER);
+    fill(255);
+    textSize(30);
+    text("Game Over", height/2, width/2 - 20);
+    textSize(15);
+    text("Click to Restart", height/2, width/2 + 10);
+  }
+
+
 
   void move() {
     rotater();

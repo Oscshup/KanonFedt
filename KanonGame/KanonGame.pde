@@ -52,6 +52,9 @@ void draw() {
   for (Tank t : tank) {
     t.display();
     t.move();
+    t.health();
+    t.decreaseHealth();
+    t.gameOverScreen();
   }
 }
 
@@ -62,4 +65,15 @@ void mouseClicked() {
     s = new Shot(xTemp, yTemp, 15, orange, mouseX, mouseY, massShot);
     shotActive = true;
   }
+}
+
+void mousePressed() {
+  // if we are on the initial screen when clicked, start the game
+  if (gameScreen==0) {
+    startGame();
+  }
+}
+
+void startGame() {
+  gameScreen=1;
 }

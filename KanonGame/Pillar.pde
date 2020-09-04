@@ -14,7 +14,7 @@ class Pillar {
 
   boolean collideBall(Shot s) {
     for (int i = int(hill.floorFunction(x)); i >= height/2+w/2; i--) {
-      float minDist = s.diaX/2+w/2;
+      float minDist = s.d/2+w/2;
       float d = dist(width/2, i, s.location.x, s.location.y);
       if (d < minDist-10) {
         return true;
