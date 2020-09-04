@@ -12,6 +12,7 @@ class Shot {
   float mass;
   int sequence = 0;
   boolean explosionActive = false;
+  float topSpeed = 40;
 
 
   // For explosion animation
@@ -24,7 +25,7 @@ class Shot {
     target = new PVector(targetX_, targetY_);
     angleStart = atan2(target.y-location.y, target.x-location.x);
     PVector tempVel = PVector.sub(target, location);
-    velStart = map(tempVel.mag(), -width, width, -20, 20);
+    velStart = map(tempVel.mag(), -width, width, -topSpeed, topSpeed);
     float VelX = velStart * cos(angleStart);
     float VelY = velStart * sin(angleStart);
     velocity = new PVector(VelX, VelY);
