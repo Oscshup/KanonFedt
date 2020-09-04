@@ -3,8 +3,8 @@ class Tank {
   PImage tank;
   PImage ror;
   PVector location;
-  PVector velocity;
-  int i = 0;
+  float velocity = 1;
+  int fuel = 200;
   int dir = 1;
   float angleStart = 0;
   int rorLength = 75;
@@ -24,7 +24,7 @@ class Tank {
     // rectMode(CENTER);
     ror = loadImage("ror.png");
     pushMatrix();
-    translate(location.x, location.y);
+    translate(location.x, location.y-5);
     rotate(hill.diffFloorFunction(location.x));
     pushMatrix();
     angleStart = constrain(atan2(mouseY-location.y, mouseX-location.x), -PI, 0);
@@ -54,14 +54,22 @@ class Tank {
   void move() {
     if (keyPressed) {
       if (key == 'A' || key == 'a') {
-        location.x -= 1;
-        i--;
+        location.x -= velocity;
+        fuel--;
         dir = 1;
       }
       if (key == 'D' || key == 'd') {
-        location.x += 1;
-        i++;
+        location.x += velocity;
+        fuel--;
         dir = -1;
+      
+      }
+      println(fuel);
+      if (fuel <= 0){
+        velocity = 0;
+      }
+      else{
+        velocity = 1;
       }
     }
     

@@ -76,10 +76,12 @@ class Shot {
     if (redOpacity <= 0) {
       explosionActive = false;
       shotActive = false;
-      if(turn == 1){
+      if (turn == 1) {
         turn = 2;
+        tank[turn-1].fuel = 200;
       } else {
         turn = 1;
+        tank[turn-1].fuel = 200;
       }
     }
   }
@@ -96,9 +98,12 @@ class Shot {
       location.x = diaX/2;
       velocity.x*=-1;
     }
-    if (location.y > height-diaY/2) {
-      location.y = height-diaY/2;
-      hit();
+    for (int i = 0; i < width; i++) {
+      float dis = dist(i,hill.floorFunction(i),location.x,location.y);
+      if (dis < diaX/2) {
+        
+        hit();
+      }
     }
   }
 }
