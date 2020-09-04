@@ -29,7 +29,7 @@ class Shot {
     float VelX = velStart * cos(angleStart);
     float VelY = velStart * sin(angleStart);
     velocity = new PVector(VelX, VelY);
-    mass = mass_; 
+    mass = mass_;
     acceleration = new PVector(0, 0);
     diaX = dia_;
     diaY = dia_;
@@ -90,7 +90,7 @@ class Shot {
     } else if (location.x < diaX/2) {
       location.x = diaX/2;
       velocity.x*=-1;
-    } 
+    }
     if (location.y > height-diaY/2) {
       location.y = height-diaY/2;
       hit();

@@ -10,7 +10,7 @@ class Hill {
     float y = konstant+amplitude*sin(angularVelocity*x+displacement);
     return y;
   }
-  
+
   float diffFloorFunction(float x){
     float angularVelocity = (2*3*PI)/width;
     float amplitude = width/20;

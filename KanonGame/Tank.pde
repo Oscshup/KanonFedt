@@ -4,7 +4,7 @@ class Tank {
   PImage ror;
   PVector location;
   PVector velocity;
-  int i = 0; 
+  int i = 0;
   int dir = 1;
   float angleStart = 0;
   int rorLength = 75;
@@ -50,7 +50,7 @@ class Tank {
 
   void move() {
     rotater();
-    if (keyPressed) { 
+    if (keyPressed) {
       if (key == 'A' || key == 'a') {
         location.x -= 1;
         i--;
