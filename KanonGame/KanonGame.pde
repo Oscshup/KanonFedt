@@ -21,8 +21,12 @@ boolean shotActive = false;
 
 void setup() {
   size(700, 700);
+  Start();
+}
+
+void Start(){
   screen = new Screen();
-  
+
   //background = new Background();
   hill = new Hill();
   p = new Pillar();
@@ -37,21 +41,25 @@ void setup() {
 }
 
 void draw() {
- screen.display();
-  
-  
-  
+  screen.display();
 }
+
+boolean start = true;
 
 void mouseClicked() {
-  if (shotActive == false) {
-    xTemp = tank[player-1].location.x+cos(tank[player-1].angleStart)*tank[player-1].rorLength;
-    yTemp = tank[player-1].location.y+sin(tank[player-1].angleStart)*tank[player-1].rorLength;
-    s = new Shot(xTemp, yTemp, 15, orange, mouseX, mouseY, massShot);
-    shotActive = true;
+  for (Tank t : tank) {
+    if (t.dead == true) {
+      screen.restart();
+    }
   }
-}
-
-void mousePressed() {
-  screen.StartGame();
+  if (start == true) {
+    screen.startGame();
+  } else {
+    if (shotActive == false) {
+      xTemp = tank[player-1].location.x+cos(tank[player-1].angleStart)*tank[player-1].rorLength;
+      yTemp = tank[player-1].location.y+sin(tank[player-1].angleStart)*tank[player-1].rorLength;
+      s = new Shot(xTemp, yTemp, 15, orange, mouseX, mouseY, massShot);
+      shotActive = true;
+    }
+  }
 }

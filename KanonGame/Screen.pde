@@ -1,18 +1,6 @@
 class Screen {
   int gameScreen = 0;
 
-
-  void StartGame() {
-    // if we are on the initial screen when clicked, start the game
-    if (gameScreen==0) {
-      startGame();
-    }
-
-    if (gameScreen==2) {
-      restart();
-    }
-  }
-
   void display() {
     // Display the contents of the current screen
     if (gameScreen == 0) {
@@ -25,8 +13,15 @@ class Screen {
   }
 
   void initScreen() {
-    // codes of initial screen
+    background(255);
+    textAlign(CENTER);
+    fill(0);
+    textSize(30);
+    text("TankWar", height/2, width/2 - 20);
+    textSize(15);
+    text("Click to Start", height/2, width/2 + 10);
   }
+  
   void gameScreen() {
     background(0, 50, 180);
     //background.display();
@@ -72,7 +67,12 @@ class Screen {
   }
   
   void restart() {
-    //health = maxHealth;
-    screen.gameScreen = 1;
+   println("ge");
+   /*for(Tank t: tank){
+   t.
+   }
+   start = true;
+   gameScreen = 0;*/
+   Start();
   }
 }

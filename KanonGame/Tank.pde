@@ -15,6 +15,7 @@ class Tank {
   float health = 100;
   float healthDecrease = 1;
   int healthBarWidth = 60;
+  boolean dead = false;
 
   Tank(float x, float y, float r_, float offX_, float offY_) {
     location = new PVector(x, y);
@@ -79,12 +80,9 @@ class Tank {
     health -= healthDecrease;
     if (health <= 0) {
       screen.gameOverScreen();
+      dead = true;
     }
   }
-
-  
-
-
 
   void move() {
     rotater();
