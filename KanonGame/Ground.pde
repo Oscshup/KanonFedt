@@ -1,8 +1,9 @@
 class Hill {
   PVector location;
   float r;
-  float a = 0.0;
-  float inc = TWO_PI/25.0;
+
+  float angle = 0;
+  float angleVel = 0.3;
 
 
 
@@ -13,10 +14,16 @@ class Hill {
 
 
   void display() {
-    stroke(4);
-    for (int i = 0; i < 100; i=i+4) {
-      stroke(i, 50, i, sin(a));
-      a = a + inc;
+    stroke(0);
+    strokeWeight(2);
+    noFill();
+    beginShape();
+    for (int x = 0; x <= width; x += 20) {
+      float y = map(sin(angle), -1, 1, height-100, height+20);
+      vertex(x, y);
+      angle +=angleVel;
     }
+    angle = 0;
+    endShape();
   }
 }
