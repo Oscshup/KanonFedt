@@ -15,6 +15,9 @@ class Hill {
     strokeWeight(3);
     stroke(255);
     noFill();
+    //   arc(location.x, location.y, r*2, r, radians(180), radians(360));
+    //  arc(location.x+490, location.y, r, r, radians(180), radians(200));
+    //  arc(location.x-490, location.y, r, r, radians(340), radians(360));
     beginShape();
     for (int x =0; x <= width; x += 1) {
 

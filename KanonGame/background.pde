@@ -1,13 +1,13 @@
 class Background {
-  
+
   PImage b;
-  
-  Background(){
-    b = loadImage("Background.jpg");
+
+  Background() {
+    b = loadImage("Background.JPG");
   }
-  
-  void display(){
+
+  void display() {
+    b.resize(width,height);
     image(b, 0, 0);
   }
-  
 }
