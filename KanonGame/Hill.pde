@@ -16,8 +16,7 @@ class Hill {
     float amplitude = width/20;
     float displacement = PI/2;
     float konstant = height-100;
-    //float y = amplitude*angularVelocity*cos(angularVelocity*x+displacement);
-    float y = -(3*PI*sin((3*x*PI)/350))/10;
+    float y = amplitude*angularVelocity*cos(angularVelocity*x+displacement);
     println(y);
     return y;
   }

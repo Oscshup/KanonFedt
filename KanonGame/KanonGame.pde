@@ -10,20 +10,21 @@ float xTemp;
 float yTemp;
 color orange = color(255, 154, 0);
 float massShot = 10;
+float tankOffY;
 
 boolean shotActive = false;
 
 void setup() {
-  size(700, 700);
+  size(1200, 700);
   //background = new Background();
   hill = new Hill();
   p = new Pillar();
   for (int i = 0; i < tank.length; i++) {
     float offXTemp = 50;
     float offYTemp = 5;
-    float tankOffYTemp = 50;
+    tankOffY = 50;
     xTemp = width*i+width/6-2*i*width/6;
-    yTemp = hill.floorFunction(xTemp)-tankOffYTemp;
+    yTemp = hill.floorFunction(xTemp)-tankOffY;
     tank[i] = new Tank(xTemp, yTemp, 56, offXTemp, offYTemp);
   }
 }
