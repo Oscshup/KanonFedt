@@ -3,6 +3,7 @@ class Tank {
   PImage tank;
   PImage ror;
   PVector location;
+  PVector velocity;
   int i = 0; 
   int dir = 1;
 

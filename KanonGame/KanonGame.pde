@@ -3,7 +3,7 @@
 Background background;
 Shot s;
 
-int player = 2;
+int player = 1;
 
 // Skal udskiftes med lokation af rørets ende.
 float xTemp;
@@ -20,7 +20,7 @@ Hill hill;
 void setup() {
   background = new Background(); 
   size(960, 540);
-  background = new Background();
+//  background = new Background();
   xTemp = 100;
   yTemp = height-100;
 
@@ -49,7 +49,7 @@ void draw() {
       s.display();
     }
     s.checkEdges();
-  }
+  } 
 
 
   for (Tank t : tank) {
