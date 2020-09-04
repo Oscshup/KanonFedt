@@ -4,7 +4,8 @@ class Shot {
   PVector velocity;
   PVector acceleration;
   PVector target;
-  float d;
+  float diaX;
+  float diaY;
   color c;
   float angleStart;
   float velStart;
@@ -28,9 +29,10 @@ class Shot {
     float VelX = velStart * cos(angleStart);
     float VelY = velStart * sin(angleStart);
     velocity = new PVector(VelX, VelY);
-    mass = mass_; 
+    mass = mass_;
     acceleration = new PVector(0, 0);
-    d = dia_;
+    diaX = dia_;
+    diaY = dia_;
     c = c_;
     redOpacity = 255;
     diaExplosion = dia_;
@@ -54,7 +56,7 @@ class Shot {
     stroke(0);
     strokeWeight(1);
     fill(c);
-    ellipse(location.x, location.y, d, d);
+    ellipse(location.x, location.y, diaX, diaY);
   }
 
   void hit() {
@@ -74,6 +76,11 @@ class Shot {
     if (redOpacity <= 0) {
       explosionActive = false;
       shotActive = false;
+      if(turn == 1){
+        turn = 2;
+      } else {
+        turn = 1;
+      }
     }
   }
 
@@ -82,15 +89,15 @@ class Shot {
 
 
   void checkEdges() {
-    if (location.x > width-d/2) {
-      location.x = width-d/2;
+    if (location.x > width-diaX/2) {
+      location.x = width-diaX/2;
       velocity.x*=-1;
-    } else if (location.x < d/2) {
-      location.x = d/2;
+    } else if (location.x < diaX/2) {
+      location.x = diaX/2;
       velocity.x*=-1;
-    } 
-    if (location.y > height-d/2) {
-      location.y = height-d/2;
+    }
+    if (location.y > height-diaY/2) {
+      location.y = height-diaY/2;
       hit();
     }
   }

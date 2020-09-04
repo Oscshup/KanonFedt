@@ -11,13 +11,11 @@ class Hill {
     return y;
   }
 
-  float diffFloorFunction(float x) {
+  float diffFloorFunction(float x){
     float angularVelocity = (2*3*PI)/width;
     float amplitude = width/20;
     float displacement = PI/2;
-    float konstant = height-100;
-    //float y = amplitude*angularVelocity*cos(angularVelocity*x+displacement);
-    float y = -(3*PI*sin((3*x*PI)/350))/10;
+    float y = amplitude*angularVelocity*cos(angularVelocity*x+displacement);
     return y;
   }
 
