@@ -25,7 +25,7 @@ void setup() {
   yTemp = height-100;
 
   for (int i = 0; i < player; i++) {
-    tank[i] = new Tank(100,100, 40);
+    tank[i] = new Tank(100, 100,56);
   }
 
   hill = new Hill(width/2, height, 350);
