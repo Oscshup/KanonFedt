@@ -1,3 +1,5 @@
+//Variable
+
 //Background background;
 Shot s;
 Hill hill;
@@ -11,10 +13,16 @@ float yTemp;
 color orange = color(255, 154, 0);
 float massShot = 10;
 
+//screen
+Screen screen;
+
+
 boolean shotActive = false;
 
 void setup() {
   size(700, 700);
+  screen = new Screen();
+  
   //background = new Background();
   hill = new Hill();
   p = new Pillar();
@@ -29,33 +37,10 @@ void setup() {
 }
 
 void draw() {
-  background(0, 50, 180);
-  //background.display();
-  hill.display();
-  p.display();
-
-  if (shotActive == true) {
-    PVector gravityShot = new PVector(0, 0.2*massShot);
-    s.applyForce(gravityShot);
-    s.update();
-    if (p.collideBall(s) == true) {
-      s.hit();
-    }
-    if (s.explosionActive == true) {
-      s.explode();
-    } else {
-      s.display();
-    }
-    s.checkEdges();
-  }
-
-  for (Tank t : tank) {
-    t.display();
-    t.move();
-    t.health();
-    t.decreaseHealth();
-    t.gameOverScreen();
-  }
+ screen.display();
+  
+  
+  
 }
 
 void mouseClicked() {
@@ -68,12 +53,5 @@ void mouseClicked() {
 }
 
 void mousePressed() {
-  // if we are on the initial screen when clicked, start the game
-  if (gameScreen==0) {
-    startGame();
-  }
-}
-
-void startGame() {
-  gameScreen=1;
+  screen.StartGame();
 }

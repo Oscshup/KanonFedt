@@ -13,7 +13,7 @@ class Tank {
   //variable to the Healthbar
   int maxHealth = 100;
   float health = 100;
-  float healthDecrease = 10;
+  float healthDecrease = 1;
   int healthBarWidth = 60;
 
   Tank(float x, float y, float r_, float offX_, float offY_) {
@@ -55,7 +55,7 @@ class Tank {
 
   void health() {
     noStroke();
-    fill(0, 255, 0);
+    fill(255, 100);
     rectMode(CORNER);
     rect(location.x-(healthBarWidth/2), location.y - 30, healthBarWidth, 5);
     if (health > 60) {
@@ -71,30 +71,18 @@ class Tank {
 
 
   void decreaseHealth() {
-    if ((s.location.x+(s.d/2)>location.x) && 
-      (s.location.x-(s.d/2)<location.x) &&
-      (s.location.y+(s.d/2)>location.y) &&
-      (s.location.y-(s.d/2)<location.y)
-      ) {
-      decreaseHealth();
-    }
+    /*if () {
+     decreaseHealth();
+     }*/
 
 
     health -= healthDecrease;
     if (health <= 0) {
-      gameOverScreen();
+      screen.gameOverScreen();
     }
   }
 
-  void gameOverScreen() {
-    background(0);
-    textAlign(CENTER);
-    fill(255);
-    textSize(30);
-    text("Game Over", height/2, width/2 - 20);
-    textSize(15);
-    text("Click to Restart", height/2, width/2 + 10);
-  }
+  
 
 
 
