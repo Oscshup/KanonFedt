@@ -65,10 +65,6 @@ class Tank {
       }
     }
     
-    location.y=hill.floorFunction(location.x)-tankOffY;
-    
-    if(location
-    
-    
+    location.y=hill.floorFunction(location.x)-tankOffY;    
   }
 }
