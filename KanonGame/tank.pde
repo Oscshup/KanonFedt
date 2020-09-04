@@ -24,7 +24,7 @@ class Tank {
     // rectMode(CENTER);
     ror = loadImage("ror.png");
     pushMatrix();
-    translate(location.x, location.y-5);
+    translate(location.x, location.y);
     rotate(hill.diffFloorFunction(location.x));
     pushMatrix();
     angleStart = constrain(atan2(mouseY-location.y, mouseX-location.x), -PI, 0);
@@ -36,11 +36,12 @@ class Tank {
     popMatrix();
 
     tank = loadImage("tank.png");
-    noStroke();
+    //noStroke();
+    strokeWeight(2);
     noFill();
 
-
-    //rect(-offX, -offY, r*2, r);
+    rectMode(CORNER);
+    rect(-offX, -offY, r*2, r);
     tank.resize(int(r*2), int(r));
     image(tank, -offX, -offY);
     popMatrix();
