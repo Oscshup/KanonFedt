@@ -76,6 +76,11 @@ class Shot {
     if (redOpacity <= 0) {
       explosionActive = false;
       shotActive = false;
+      if(turn == 1){
+        turn = 2;
+      } else {
+        turn = 1;
+      }
     }
   }
 

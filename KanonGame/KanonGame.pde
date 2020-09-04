@@ -2,8 +2,10 @@
 Shot s;
 Hill hill;
 Pillar p;
-int player = 1;
+int player = 2;
 Tank[] tank = new Tank[player];
+
+int turn = 1;
 
 // Skal udskiftes med lokation af rørets ende.
 float xTemp;
@@ -52,14 +54,17 @@ void draw() {
 
   for (Tank t : tank) {
     t.display();
-    t.move();
+  }
+  if (shotActive == false) {
+    tank[turn-1].move();
   }
 }
 
 void mouseClicked() {
   if (shotActive == false) {
-    xTemp = tank[player-1].location.x+cos(tank[player-1].angleStart)*tank[player-1].rorLength;
-    yTemp = tank[player-1].location.y+sin(tank[player-1].angleStart)*tank[player-1].rorLength;
+
+    xTemp = tank[turn-1].location.x+cos(tank[turn-1].angleStart)*tank[turn-1].rorLength;
+    yTemp = tank[turn-1].location.y+sin(tank[turn-1].angleStart)*tank[turn-1].rorLength;
     s = new Shot(xTemp, yTemp, 15, orange, mouseX, mouseY, massShot);
     shotActive = true;
   }
