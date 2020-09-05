@@ -17,17 +17,15 @@ class Screen {
     textAlign(CENTER);
     fill(0);
     textSize(30);
-    text("TankWar", height/2, width/2 - 20);
+    text("TankWar", width/2, height/2 - 20);
     textSize(15);
-    text("Click to Start", height/2, width/2 + 10);
+    text("Click to Start", width/2, height/2 + 10);
   }
-  
+
   void gameScreen() {
     background(0, 50, 180);
-    //background.display();
     hill.display();
     p.display();
-
 
     if (shotActive == true) {
       PVector gravityShot = new PVector(0, 0.2*massShot);
@@ -46,9 +44,12 @@ class Screen {
 
     for (Tank t : tank) {
       t.display();
-      t.move();
       t.health();
       t.decreaseHealth();
+      t.fuelGuage();
+    }
+    if (shotActive == false) {
+      tank[turn-1].move();
     }
   }
   void gameOverScreen() {
@@ -56,23 +57,18 @@ class Screen {
     textAlign(CENTER);
     fill(255);
     textSize(30);
-    text("Game Over", height/2, width/2 - 20);
+    text("Game Over", width/2, height/2 - 20);
     textSize(15);
-    text("Click to Restart", height/2, width/2 + 10);
+    text("Click to Restart", width/2, height/2 + 10);
   }
 
 
   void startGame() {
     gameScreen=1;
+    start = false;
   }
-  
+
   void restart() {
-   println("ge");
-   /*for(Tank t: tank){
-   t.
-   }
-   start = true;
-   gameScreen = 0;*/
-   Start();
+    Start();
   }
 }
