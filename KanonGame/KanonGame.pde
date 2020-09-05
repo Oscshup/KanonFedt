@@ -16,8 +16,17 @@ float tankOffY;
 
 boolean shotActive = false;
 
+boolean start = true;
+
+Screen screen;
+
 void setup() {
   size(1200, 700);
+  Start();
+}
+
+void Start() {
+  screen = new Screen();
   //background = new Background();
   hill = new Hill();
   p = new Pillar();
@@ -27,42 +36,26 @@ void setup() {
     tankOffY = 50;
     xTemp = width*i+width/6-2*i*width/6;
     yTemp = hill.floorFunction(xTemp)-tankOffY;
-    tank[i] = new Tank(xTemp, yTemp, 56, offXTemp, offYTemp);
+    tank[i] = new Tank(xTemp, yTemp, 56, offXTemp, offYTemp, i+1);
   }
 }
 
 void draw() {
-  background(0, 50, 180);
-  //background.display();
-  hill.display();
-  p.display();
-
-  if (shotActive == true) {
-    PVector gravityShot = new PVector(0, 0.2*massShot);
-    s.applyForce(gravityShot);
-    s.update();
-    if (p.collideBall(s) == true) {
-      s.hit();
-    }
-    if (s.explosionActive == true) {
-      s.explode();
-    } else {
-      s.display();
-    }
-    s.checkEdges();
-  }
-
-  for (Tank t : tank) {
-    t.display();
-    t.fuelGuage();
-  }
-  if (shotActive == false) {
-    tank[turn-1].move();
-  }
+  screen.display();
 }
 
+
+
 void mouseClicked() {
-  if (shotActive == false) {
+  for (Tank t : tank) {
+    if (t.dead == true) {
+      screen.gameScreen = 2;
+      screen.restart();
+    }
+  }
+  if (start == true) {
+    screen.startGame();
+  } else if (shotActive == false) {
 
     xTemp = tank[turn-1].location.x+cos(tank[turn-1].angleStart)*tank[turn-1].rorLength;
     yTemp = tank[turn-1].location.y+sin(tank[turn-1].angleStart)*tank[turn-1].rorLength;

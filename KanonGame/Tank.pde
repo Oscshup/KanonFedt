@@ -11,17 +11,24 @@ class Tank {
   float offX;
   float offY;
   float yTop;
+  int id;
 
-  Tank(float x, float y, float r_, float offX_, float offY_ ) {
-    location = new PVector(x, y);
-    yTop = y;
+  float health = 100;
+  float maxHealth = 100;
+  float healthDecrease = 0;
+  int healthBaswidth = 60;
+  boolean dead = false;
+
+  Tank(float x_, float y_, float r_, float offX_, float offY_, int id_) {
+    location = new PVector(x_, y_);
+    yTop = y_;
     r = r_;
     offX = offX_;
     offY = offY_;
+    id = id_;
   }
 
   void display() {
-    // rectMode(CENTER);
     ror = loadImage("ror.png");
     pushMatrix();
     translate(location.x, location.y);
@@ -36,7 +43,6 @@ class Tank {
     popMatrix();
 
     tank = loadImage("tank.png");
-    //noStroke();
     strokeWeight(2);
     noFill();
 
@@ -47,6 +53,30 @@ class Tank {
     popMatrix();
   }
 
+  void health() {
+    noStroke();
+    fill(255, 100);
+    rectMode(CORNER);
+    rect(location.x-(healthBaswidth/2), location.y - 30, healthBaswidth, 5);
+    if (health > 60) {
+      fill(46, 204, 113);
+    } else if (health > 30) {
+      fill(230, 126, 34);
+    } else {
+      fill(231, 76, 60);
+    }
+    rectMode(CORNER);
+    rect(location.x-(healthBaswidth/2), location.y-30, healthBaswidth*(health/maxHealth), 5);
+  }
+
+  void decreaseHealth() {
+    health -= healthDecrease;
+    if (health <= 0) {
+      screen.gameOverScreen();
+      dead = true;
+    }
+  }
+
   float rotation() {
     float angle = atan2(location.x, hill.diffFloorFunction(location.x));
     return angle;
@@ -55,29 +85,49 @@ class Tank {
   void move() {
     if (keyPressed) {
       if (key == 'A' || key == 'a') {
-        location.x -= velocity;
-        fuel--;
-        dir = 1;
+        if (id == 2) {
+          if (location.x-velocity > (id-1)*width/2+r*id*7/9) {
+            location.x -= velocity;
+            fuel--;
+            dir = 1;
+          }
+        } else {
+          if (location.x-velocity > r/2) {
+            location.x -= velocity;
+            fuel--;
+            dir = 1;
+          }
+        }
       }
       if (key == 'D' || key == 'd') {
-        location.x += velocity;
-        fuel--;
-        dir = -1;
+        if (id == 2) {
+          if (location.x+velocity < id*width/2-r/2) {
+            location.x += velocity;
+            fuel--;
+            dir = -1;
+          }
+        } else {
+          if (location.x+velocity < id*width/2-r*3/2) {
+            location.x += velocity;
+            println(location.x);
+            fuel--;
+            dir = -1;
+          }
+        }
       }
-      println(fuel);
       if (fuel <= 0) {
         velocity = 0;
       } else {
         velocity = 1;
       }
     }
-
     location.y=hill.floorFunction(location.x)-tankOffY;
   }
 
   void fuelGuage() {
-    fill(  57, 255, 20);
+    fill(57, 255, 20);
     rectMode(CORNER);
+
     rect(location.x-100, location.y-20, 20, 50);
     fill(255);
     rect(location.x-100, location.y-20, 20, 50-(constrain(fuel, 0, 200)/4));
