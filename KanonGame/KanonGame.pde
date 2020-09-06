@@ -5,31 +5,45 @@ Pillar p;
 int player = 2;
 Tank[] tank = new Tank[player];
 
-int turn = 1;
+int turn = 1; // Bestemmer hvis tur det er (eks. turn = 1, så er det player 1's tur)
 
-// Skal udskiftes med lokation af rørets ende.
-float xTemp;
+// Lokation af tankens kanons ende
+float xTemp; 
 float yTemp;
-color orange = color(255, 154, 0);
-float massShot = 10;
-float tankOffY;
 
-boolean shotActive = false;
+color orange = color(255, 154, 0); // Farven af skuddet
+float massShot = 10; // Massen af skuddet
 
-boolean start = true;
+float tankOffY; // Skyldes at tankens lokation er skæv i forhold til dets koordinater
+
+// Sørger for at skuddet kun kan ramme en tank 1 gang per tur
+int turnsTotal = 0;
+int lastTurnHit = 0;
+
+boolean shotActive = false; // Bestemmer om et skud er affyret eller ej.
+
+boolean start = true; // Bestemmer om spillet lige er gået til startskærmen.
 
 Screen screen;
 
 void setup() {
   size(1200, 700);
-  Start();
+  Start(); // Funktion der leder til startskærmen
 }
 
-void Start() {
+void Start() { // Ligesom en setup-funktion der kan køres forfra.
   screen = new Screen();
-  //background = new Background();
-  hill = new Hill();
-  p = new Pillar();
+  screen.gameScreen = 0; // Forklares i classen om skærmen. (den viser startskærmen)
+  // Alle værdier sættes til deres startværdier
+  start = true;
+  turn = 1; 
+  lastTurnHit = 0;
+  turnsTotal = 0;
+  //background = new Background(); // Kan anvendes, men skaber lag
+  hill = new Hill(); // Tegner gulvet
+  p = new Pillar(); // Tegner søjlen i midten
+  
+  // Her tegnes tanksene
   for (int i = 0; i < tank.length; i++) {
     float offXTemp = 50;
     float offYTemp = 5;
@@ -41,25 +55,27 @@ void Start() {
 }
 
 void draw() {
-  screen.display();
+  screen.display(); // Viser skærmen og kører alle funktioner, hvis spillet er igang
 }
 
-
-
 void mouseClicked() {
+  // Her startes spillet forfra hvis en spiller har tabt
   for (Tank t : tank) {
     if (t.dead == true) {
-      screen.gameScreen = 2;
       screen.restart();
     }
   }
+  
+  // Her startes spillet hvis man trykker på startskærmen
   if (start == true) {
     screen.startGame();
-  } else if (shotActive == false) {
-
+  } else if (shotActive == false) { // Her affyres et skud, hvis et ikke allerede er affyret.
+    // Her beregnes lokationen af kanonen på tankens ende
     xTemp = tank[turn-1].location.x+cos(tank[turn-1].angleStart)*tank[turn-1].rorLength;
     yTemp = tank[turn-1].location.y+sin(tank[turn-1].angleStart)*tank[turn-1].rorLength;
+    // Her affyrest skuddet
     s = new Shot(xTemp, yTemp, 15, orange, mouseX, mouseY, massShot);
-    shotActive = true;
+    turnsTotal++; // Mængden af skud stiger med 1
+    shotActive = true; // Der er nu et skud igang.
   }
 }
