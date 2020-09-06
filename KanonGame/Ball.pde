@@ -57,6 +57,7 @@ class Shot {
     strokeWeight(1);
     fill(c);
     ellipse(location.x, location.y, diaX, diaY);
+   
   }
 
   void hit() {
@@ -105,37 +106,5 @@ class Shot {
       }
     }
   }
-  void collisionCheck() {
-    float cx = s.location.x;      // circle position (set with mouse)
-    float cy = s.location.y;
-    float r = s.diaX/2;      // circle radius
 
-    float sx = tank.location.x;    // square position
-    float sy = tank.location.y;
-    float sw = 112;    // and dimensions
-    float sh = 56;
-
-    boolean ramt = collision(cx, cy, r, sx, sy, sw, sh);
-    if (ramt) {
-      s.hit();
-      println("Cyka");
-    }
-  }
-  boolean collision(float cx, float cy, float radius, float sx, float sy, float sw, float sh) {
-    float testX = cx;
-    float testY = cy;
-
-    if (cx < sx)         testX = sx;      // test left edge
-    else if (cx > sx+sw) testX = sx+sw;   // right edge
-    if (cy < sy)         testY = sy;      // top edge
-    else if (cy > sy+sh) testY = sy+sh;   // bottom edge
-
-    float distX = cx-testX;
-    float distY = cy-testY;
-    float distance = sqrt( (distX*distX) + (distY*distY) );
-    if (distance <= radius) {
-      return true;
-    }
-    return false;
-  }
 }

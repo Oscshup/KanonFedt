@@ -29,6 +29,7 @@ class Tank {
   }
 
   void display() {
+    println(location.x);
     ror = loadImage("ror.png");
     pushMatrix();
     translate(location.x, location.y);
@@ -132,4 +133,40 @@ class Tank {
     fill(255);
     rect(location.x-100, location.y-20, 20, 50-(constrain(fuel, 0, 200)/4));
   }
+  
+  
+    void collisionCheck() {
+    float cx = s.location.x;      // circle position (set with mouse)
+    float cy = s.location.y;
+    float r = s.diaX/2;      // circle radius
+
+    float sx =location.x;    // square position
+    float sy =location.y;
+    float sw = 112;    // and dimensions
+    float sh = 56;
+
+    boolean ramt = collision(cx, cy, r, sx, sy, sw, sh);
+    if (ramt) {
+      s.hit();
+      println("Cyka");
+    }
+  }
+  boolean collision(float cx, float cy, float radius, float sx, float sy, float sw, float sh) {
+    float testX = cx;
+    float testY = cy;
+
+    if (cx < sx)         testX = sx;      // test left edge
+    else if (cx > sx+sw) testX = sx+sw;   // right edge
+    if (cy < sy)         testY = sy;      // top edge
+    else if (cy > sy+sh) testY = sy+sh;   // bottom edge
+
+    float distX = cx-testX;
+    float distY = cy-testY;
+    float distance = sqrt( (distX*distX) + (distY*distY) );
+    if (distance <= radius) {
+      return true;
+    }
+    return false;
+  }
+  
 }

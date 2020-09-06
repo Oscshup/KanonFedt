@@ -26,11 +26,13 @@ class Screen {
     background(0, 50, 180);
     hill.display();
     p.display();
-  for (Tank t : tank) {
+
+    for (Tank t : tank) {
       t.display();
       t.health();
       t.decreaseHealth();
       t.fuelGuage();
+      t.collisionCheck();
     }
     if (shotActive == true) {
       PVector gravityShot = new PVector(0, 0.2*massShot);
@@ -45,10 +47,9 @@ class Screen {
         s.display();
       }
       s.checkEdges();
-      s.collisionCheck();
     }
 
-  
+
     if (shotActive == false) {
       tank[turn-1].move();
     }

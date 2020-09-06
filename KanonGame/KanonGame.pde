@@ -1,9 +1,11 @@
 //Background background;
+int player = 2;
+Tank[] tank = new Tank[player];
 Shot s;
 Hill hill;
 Pillar p;
-int player = 2;
-Tank[] tank = new Tank[player];
+
+
 
 int turn = 1;
 
